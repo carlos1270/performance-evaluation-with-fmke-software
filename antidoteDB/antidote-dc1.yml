@@ -1,4 +1,4 @@
-version: '3.4'
+version: '2.17.3'
 
 x-antidote-features:
   &default-features
@@ -16,7 +16,7 @@ x-antidote-features:
 services:
   dc1n1:
     container_name: dc1n1
-    image: antidotedb:local-build
+    image: antidotedb/antidote:stable
     environment:
       << : *default-features
       NODE_NAME: "antidote@dc1n1"
@@ -26,7 +26,7 @@ services:
 
   dc1n2:
     container_name: dc1n2
-    image: antidotedb:local-build
+    image: antidotedb/antidote:stable
     environment:
       << : *default-features
       NODE_NAME: "antidote@dc1n2"
