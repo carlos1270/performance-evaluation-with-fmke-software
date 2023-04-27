@@ -16,6 +16,3 @@ systemctl status docker
 curl -L "https://github.com/docker/compose/releases/download/v2.17.3/docker-compose-linux-x86_64" -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 docker-compose --version
-
-#AntidoteDB com docker
-docker run -d --name antidote1 -p "8087:8087" -e "NODE_NAME=antidote@antidote1" antidotedb/antidote:stable
