@@ -40,3 +40,11 @@ services:
     depends_on:
       - dc1n1
       - dc1n2
+
+  link-dcs:
+    image: peterzel/antidote-connect
+    command: ['--connectDcs', 'dc1n1:8087', '<ip-cluster>:8087']
+    depends_on:
+      - dc1n1
+      - dc1n2
+      - link-cluster-1
