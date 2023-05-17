@@ -1,10 +1,11 @@
 sudo su
 
 #Instalando erlang
+apt-add-repository ppa:linuxjedi/ppa
 apt update
 apt -y upgrade
 
-apt install -y curl libssl-dev make automake autoconf libncurses5-dev gcc g++ openjdk-8-jdk javascript-common libjs-jquery libjs-jquery-metadata libjs-jquery-tablesorter libodbc1 libsctp1 libwxbase3.0-0v5 libwxgtk3.0-gtk3-0v5 xsltproc fop erlang
+apt install -y curl libssl-dev make automake autoconf cmake git libuv1-dev wget libncurses5-dev gcc g++ openjdk-8-jdk javascript-common libjs-jquery libjs-jquery-metadata libjs-jquery-tablesorter libodbc1 libsctp1 libwxbase3.0-0v5 libwxgtk3.0-gtk3-0v5 xsltproc fop
 
 git clone https://github.com/erlang/otp.git
 cd otp
