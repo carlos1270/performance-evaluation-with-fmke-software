@@ -1,9 +1,17 @@
-version: '2.17.3'
+version: '3'
+
+x-cassandra-features-seed-one:
+  &cassandra-features-seed-one
+  CASSANDRA_CLUSTER_NAME: "Aging In Cassandra"
 
 services:
   cassandradc1n1:
     container_name: cassandradc1n1
     image: carlosaacavalcante/cassandra-aval:1.0
+    volumes:
+      - /home/carlos/dc1n1:/var/lib/cassandra
+    environment:
+      << : *cassandra-features-seed-one
     ports:
       - "8000:7000"
       - "8001:7001"
@@ -14,29 +22,50 @@ services:
   cassandradc1n2:
     container_name: cassandradc1n2
     image: carlosaacavalcante/cassandra-aval:1.0
+    volumes:
+      - /home/carlos/dc1n2:/var/lib/cassandra
+    environment: 
+      << : *cassandra-features-seed-one
+      CASSANDRA_SEEDS: "cassandradc1n1"
     ports:
       - "9000:7000"
       - "9001:7001"
       - "9002:7199"
       - "9003:9042"
       - "9004:9160"
+    depends_on:
+      - cassandradc1n1
 
   cassandradc1n3:
     container_name: cassandradc1n3
     image: carlosaacavalcante/cassandra-aval:1.0
+    volumes:
+      - /home/carlos/dc1n3:/var/lib/cassandra
+    environment: 
+      << : *cassandra-features-seed-one
+      CASSANDRA_SEEDS: "cassandradc1n1"
     ports:
       - "10000:7000"
       - "10001:7001"
       - "10002:7199"
       - "10003:9042"
       - "10004:9160"
-  
+    depends_on:
+      - cassandradc1n1
+
   cassandradc1n4:
     container_name: cassandradc1n4
     image: carlosaacavalcante/cassandra-aval:1.0
+    volumes:
+      - /home/carlos/dc1n4:/var/lib/cassandra
+    environment: 
+      << : *cassandra-features-seed-one
+      CASSANDRA_SEEDS: "cassandradc1n1"
     ports:
       - "11000:7000"
       - "11001:7001"
       - "11002:7199"
       - "11003:9042"
       - "11004:9160"
+    depends_on:
+      - cassandradc1n1
