@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  redisdc1n1:
+    image: redis:6.0
+    volumes:
+      - ~/redis/data1:/data
+    container_name: redisdc1n1
+    ports:
+      - "6379:6379"
+
+  redisdc1n2:
+    image: redis:6.0
+    volumes:
+      - ~/redis/data2:/data
+    container_name: redisdc1n2
+    ports:
+      - "6380:6379"
+    command: redis-server --slaveof redisdc1n1 6379
+    depends_on:
+      - redisdc1n1
